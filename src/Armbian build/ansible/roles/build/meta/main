@@ -1,0 +1,6 @@
+---
+dependencies:
+- default
+- kernel config
+- Waydroid script
+- Fix*

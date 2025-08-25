@@ -1,0 +1,20 @@
+---
+- name: Waydroid pre-requisites
+  ansible.builtin.apt:
+    pkg:
+    - curl
+    - ca-certificates
+  become: true
+
+- name: Add the official repository
+  ansible.builtin.shell: curl https://repo.waydro.id | bash
+  args:
+    creates: /etc/apt/sources.list.d/waydroid.list
+  become: true
+
+- name: Install waydroid
+  ansible.builtin.apt:
+    pkg:
+    - waydroid
+  become: true
+

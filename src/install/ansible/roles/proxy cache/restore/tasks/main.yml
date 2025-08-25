@@ -1,0 +1,39 @@
+---
+- name: get cache status
+  ansible.builtin.include_tasks:
+    file: roles/proxy cache/get/tasks/status.yml
+
+- name: Create waydroid directory
+  ansible.builtin.file:
+    path: "{{waydroid_image_dir}}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  become: true
+
+- name: Does proxy cache exist?
+  stat:
+    path: "{{cache_dir}}/{{ansible_architecture}}/{{images [0]}}"
+  register: proxy_cache
+  delegate_to: localhost
+
+- name: Restore image
+  ansible.builtin.copy:
+    src: "{{cache_dir}}/{{ansible_architecture}}/images/{{item}}"
+    dest: "{{waydroid_image_dir}}/{{item}}"
+    owner: root
+    group: root
+    mode: '0644'
+    force: false
+  loop: "{{images}}"
+  become: true
+  when: proxy_cache_exists
+
+- name: Restore waydroid init files
+  ansible.builtin.copy:
+    src: "{{cache_dir}}/{{ansible_architecture}}/{{item}}"
+    dest: "{{waydroid_dir}}/"
+  loop: "{{files}}"
+  become: true
+  when: proxy_cache_exists

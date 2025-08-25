@@ -1,0 +1,4 @@
+# OS cache:
+download_dir: "/var/lib/waydroid/cache_http"
+install_dir: "/var/lib/waydroid/images"
+file: "lineage-18.1-20231125-VANILLA-waydroid_x86_64-system.zip"

@@ -1,0 +1,15 @@
+---
+
+- name: Log dir to make Idempotent
+  ansible.builtin.file:
+    path: /var/lib/waydroid/log
+    state: directory
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+
+- name: Disable default Browser
+  ansible.builtin.shell: "{{wayland_display}} waydroid shell pm disable-user --user 0 org.lineageos.jelly > /var/lib/waydroid/log/disable-browser.log"
+  args:
+    creates: waydroid shell pm disable-user --user 0 org.lineageos.jelly > /var/lib/waydroid/log/disable-browser.log
+
+# || adb shell pm disable-user --user 0 org.lineageos.jelly

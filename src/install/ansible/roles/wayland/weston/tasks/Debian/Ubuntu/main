@@ -1,0 +1,10 @@
+---
+- name: Install Wayland
+  ansible.builtin.apt:
+    pkg:
+    - weston
+    - wlogout
+  become: true
+
+
+

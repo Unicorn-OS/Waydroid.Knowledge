@@ -1,0 +1,7 @@
+---
+- name: Install Wayland
+  ansible.builtin.apt:
+    pkg:
+    - weston
+    # - wlogout   # Not available in focal
+  become: true

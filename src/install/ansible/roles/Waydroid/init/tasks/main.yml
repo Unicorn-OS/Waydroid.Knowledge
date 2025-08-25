@@ -1,0 +1,6 @@
+---
+- name: waydroid init
+  ansible.builtin.shell: "{{'waydroid init -s GAPPS -f' if (Gapps) else 'waydroid init'}}"
+  args:
+    creates: /var/lib/waydroid/images/system.img
+  become: true

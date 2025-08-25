@@ -1,0 +1,7 @@
+---
+
+kernel_branch: "edge" #edge, current, 
+
+source_dir: "/home/{{ansible_user}}/src/armbian/build"
+
+armbian_repo: "https://github.com/armbian/build"

@@ -1,0 +1,3 @@
+---
+
+wayland_display: "WAYLAND_DISPLAY=wayland-1"

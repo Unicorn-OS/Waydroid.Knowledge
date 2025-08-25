@@ -1,0 +1,2 @@
+export WAYLAND_DISPLAY=wayland-0 # If native
+export WAYLAND_DISPLAY=wayland-1 # If in Weston

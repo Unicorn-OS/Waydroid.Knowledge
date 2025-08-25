@@ -1,0 +1,16 @@
+---
+
+# This is Breaking for some reason! Fix it ASAP!
+- name: Add packages
+  ansible.builtin.lineinfile:
+    path: "{{userpatches}}/lib.config"
+    regexp: '^PACKAGE_LIST_ADDITIONAL='
+    line: 'PACKAGE_LIST_ADDITIONAL="$PACKAGE_LIST_ADDITIONAL {{packages}}"'
+    create: yes
+  when: not safe_mode
+
+
+- name: Add Waydroid
+  ansible.builtin.template:
+    src: customize-image.sh.j2
+    dest: "{{userpatches}}/customize-image.sh"

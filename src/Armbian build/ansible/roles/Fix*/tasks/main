@@ -1,0 +1,7 @@
+---
+# https://github.com/armbian/build/issues/5246
+
+- name: Fix "low free disk space left"
+  ansible.builtin.file:
+    path: "{{source_dir}}/cache"
+    state: directory

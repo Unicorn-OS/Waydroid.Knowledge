@@ -1,0 +1,23 @@
+---
+# Focal cannot install default Wayland because of python3-gbinder not found. Use this script to Fix!
+#https://github.com/waydroid/waydroid/issues/214
+
+- name: Waydroid pre-requisites
+  ansible.builtin.apt:
+    pkg:
+    - curl
+    - ca-certificates
+  become: true
+
+- name: Add the official repository
+  ansible.builtin.shell: curl https://repo.waydro.id | bash
+  args:
+    creates: /etc/apt/sources.list.d/waydroid.list
+  become: true
+
+- name: Install waydroid
+  ansible.builtin.apt:
+    pkg:
+    - waydroid
+  become: true
+

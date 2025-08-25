@@ -1,0 +1,15 @@
+BUILD_DESKTOP=$4
+
+# https://forum.armbian.com/topic/1866-creating-image-with-extra-packages-pre-installed/
+# https://docs.waydro.id/usage/install-on-desktops
+
+sudo apt update # Must be run before any install!
+
+sudo apt install curl ca-certificates weston wlogout gnome-terminal -y --force-yes
+
+sudo curl https://repo.waydro.id | bash
+
+sudo apt update
+
+sudo apt install waydroid -y --force-yes
+

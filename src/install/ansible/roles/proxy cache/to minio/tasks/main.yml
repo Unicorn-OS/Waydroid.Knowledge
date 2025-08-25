@@ -1,0 +1,34 @@
+---
+
+- name: Archive on node exists?
+  stat:
+    path: "{{backup_file}}"
+  register: archive
+
+
+# Todo: Has a tendency to ssh-timeout. https://www.axelerant.com/blog/how-handle-long-running-tasks-ansible
+- name: Create archive of Waydroid init files
+  community.general.archive:
+    path:
+    - "{{waydroid_dir}}/images"
+    - "{{waydroid_dir}}/waydroid_base.prop"
+    - "{{waydroid_dir}}/waydroid.cfg"
+    dest: "{{backup_file}}"
+    format: gz
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+  when: not archive.stat.exists
+  become: true
+
+- name: Create backup dir on local
+  ansible.builtin.file:
+    path: "{{backup_dir}}"
+    state: directory
+  delegate_to: localhost
+
+- name: Copy to local
+  ansible.builtin.fetch:
+    src: "{{backup_file}}"
+    dest: "{{backup_dir}}/"
+    flat: yes
+  when: to_local and archive.stat.exists

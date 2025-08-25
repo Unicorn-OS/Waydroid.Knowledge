@@ -1,0 +1,32 @@
+---
+- name: get cache status
+  ansible.builtin.include_tasks:
+    file: roles/proxy cache/get/tasks/status.yml
+
+- name: Create a directory
+  ansible.builtin.file:
+    path: "{{cache_dir}}/{{ansible_architecture}}/{{item}}"
+    state: directory
+  delegate_to: localhost
+  loop:
+  - images
+
+- name: Backup images
+  ansible.builtin.fetch:
+    src: "{{waydroid_image_dir}}/{{item}}"
+    dest: "{{cache_dir}}/{{ansible_architecture}}/images/"
+    flat: yes
+    validate_checksum: false
+  loop: "{{images}}"
+  when: (node_has_images and not proxy_cache_exists) or (recreate_cache)
+  # Will NOT work with Become! due to slurp
+
+
+- name: Backup waydroid init files
+  ansible.builtin.fetch:
+    src: "{{waydroid_dir}}/{{item}}"
+    dest: "{{cache_dir}}/{{ansible_architecture}}/"
+    flat: yes
+    validate_checksum: false
+  loop: "{{files}}"
+  when: (node_has_images and not proxy_cache_exists) or (recreate_cache)

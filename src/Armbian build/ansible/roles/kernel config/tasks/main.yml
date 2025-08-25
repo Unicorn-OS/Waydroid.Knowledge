@@ -1,0 +1,8 @@
+---
+
+# Can use either copy a Full file, or copy a template, and edit to add differences!
+
+- name: Copy a premade kernel.config file
+  ansible.builtin.copy:
+    src: "linux-rockchip64-{{kernel_branch}}.config"
+    dest: "{{userpatches}}/"

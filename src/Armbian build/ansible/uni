@@ -1,0 +1,7 @@
+---
+- hosts: builder
+  vars:
+    safe_mode: True
+
+  roles:
+  - build

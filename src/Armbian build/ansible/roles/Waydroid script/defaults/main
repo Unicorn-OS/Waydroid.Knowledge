@@ -1,0 +1,9 @@
+---
+
+dependencies: "curl ca-certificates"
+Wayland: "weston wlogout"
+desktop: "gdm3"
+test: "vlc gnome-terminal chromium"
+
+packages: "{{dependencies}} {{Wayland}} {{desktop}} {{test}}"
+

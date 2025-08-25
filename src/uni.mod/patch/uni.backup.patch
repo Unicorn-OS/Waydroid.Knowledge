@@ -1,0 +1,22 @@
+diff --git a/tools/helpers/images.py b/tools/helpers/images.py
+index f266db3..7adf65d 100644
+--- a/tools/helpers/images.py
++++ b/tools/helpers/images.py
+@@ -9,6 +9,8 @@ import os
+ import tools.config
+ from tools import helpers
+ from shutil import which
++# Uni mods
++import uni.backup
+ 
+ def sha256sum(filename):
+     h = hashlib.sha256()
+@@ -48,6 +50,8 @@ def get(args):
+                 zip_ref.extractall(args.images_path)
+             cfg["waydroid"]["system_datetime"] = str(system_response['datetime'])
+             tools.config.save(args, cfg)
++            # mod: Copies the Downloaded image in `/var/lib/waydroid/cache_http` to backup!
++            uni.backup.backup_cache()
+             os.remove(images_zip)
+             break
+ 

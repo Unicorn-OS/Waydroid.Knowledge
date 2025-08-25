@@ -1,0 +1,5 @@
+---
+
+- name: Disable default Browser
+  ansible.builtin.shell: "{{wayland_display}} waydroid shell am start com.android.chrome"
+  become: true
