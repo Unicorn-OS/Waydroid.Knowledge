@@ -1,7 +1,7 @@
 https://docs.waydro.id/faq/setting-up-a-shared-folder
 
+# Mount a Waydroid Directory on Host
 ```
-# Mount a Waydroid Directory on Host!
 dir=Documents
 host_path=~/.uni/waydroid
 instance_root=~/.local/share/waydroid/data/media/0/
