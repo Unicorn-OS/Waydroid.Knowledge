@@ -3,6 +3,8 @@ Native Android in Linux Container
 
 Home: https://waydro.id
 
+Wiki: https://wiki.archlinux.org/title/Waydroid
+
 doc: https://docs.waydro.id/
 
 # Uni
