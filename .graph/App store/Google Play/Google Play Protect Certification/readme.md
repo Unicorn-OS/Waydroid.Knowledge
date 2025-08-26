@@ -13,3 +13,7 @@ https://www.google.com/android/uncertified
 
 # Discuss:
 https://www.reddit.com/r/waydroid/comments/162iso7/how_to_fix_this_device_isnt_play_protect/
+
+# info:
+- https://g.co/AndroidCertifiedDevice = 
+https://support.google.com/android/answer/10248227
